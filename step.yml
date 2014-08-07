@@ -9,4 +9,4 @@ inputs:
     mapped_to: GEMFILE_CONTENT
   - title: |
       The Ruby script
-    mapped_to: RUBYSCRIPT_CONTENT
+    mapped_to: __INPUT_FILE__
