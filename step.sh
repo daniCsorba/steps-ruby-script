@@ -27,17 +27,14 @@ fi
 if [ "${GEMFILE_CONTENT}" != "" ]; then
 	echo " (i) Writing Gemfile"
 
-cat >./Gemfile <<EOL
-${GEMFILE_CONTENT}
-EOL
+	echo "${GEMFILE_CONTENT}" > ./Gemfile
 
 	print_and_do_command_exit_on_error bundle install
 fi
 
 echo " (i) Writing the Ruby script file"
-cat >./script.rb <<EOL
-${RUBYSCRIPT_CONTENT}
-EOL
+
+echo "${RUBYSCRIPT_CONTENT}" > ./script.rb
 
 print_and_do_command_exit_on_error ruby ./script.rb
 
