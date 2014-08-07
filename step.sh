@@ -41,3 +41,4 @@ EOL
 
 print_and_do_command_exit_on_error ruby ./script.rb
 
+echo "--- finished ---"
