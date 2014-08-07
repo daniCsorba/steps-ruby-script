@@ -15,7 +15,7 @@ Bitrise Step to run a Ruby script with optional Gemfile.
 
 Bitrise expands input Environment Variables. The *GEMFILE_CONTENT* environment is passed as a normal Environment Variable so any Environment Variable referencing will be expanded.
 
-This means: you **can't** use **$** in the Gemfile (if followed by a string right away, like: $HOME).
+This means: you **can't** use **$** in the Gemfile (if followed by a string right away, like: *$HOME*).
 
 
 ## Note
