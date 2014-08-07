@@ -1,0 +1,12 @@
+name: Ruby Script runner with optional Gemfile support
+description: |
+  Run a Ruby script with optional Gemfile.
+
+
+inputs:
+  - title: |
+      Gemfile's content
+    mapped_to: GEMFILE_CONTENT
+  - title: |
+      The Ruby script
+    mapped_to: RUBYSCRIPT_CONTENT
