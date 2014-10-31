@@ -3,6 +3,8 @@ steps-ruby-script
 
 Bitrise Step to run a Ruby script with optional Gemfile.
 
+This Step is part of the [Open StepLib](http://www.steplib.com/), you can find its StepLib page [here](http://www.steplib.com/step/ruby-script-with-gemfile)
+
 
 ## How it works?
 
