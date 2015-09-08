@@ -18,26 +18,25 @@ if [ "${gemfile_content}" == "" ]; then
 	echo " (!) gemfile_content environment is missing or empty - no Gemfile will be written/used!"
 fi
 
-if [ "${input_file}" == "" ]; then
-	echo " [!] input_file environment is missing or empty - no Ruby Script defined!"
+if [ "${ruby_content}" == "" ]; then
+	echo " [!] ruby_content environment is missing or empty - no Ruby Script defined!"
 	exit 1
 fi
 
-script_run_dir="$( cd "$( dirname "${input_file}" )" && pwd )"
-echo " (i) script_run_dir: ${script_run_dir}"
-
-(
+if [ ! -z "${script_run_dir}" ] ; then
 	print_and_do_command_exit_on_error cd "${script_run_dir}"
+fi
 
-	if [ "${gemfile_content}" != "" ]; then
-		echo " (i) Writing Gemfile"
+if [[ "${gemfile_content}" != "" ]]; then
+	echo " (i) Writing Gemfile"
 
-		echo "${gemfile_content}" > ./Gemfile
+	echo "${gemfile_content}" > ./Gemfile
 
-		print_and_do_command_exit_on_error bundle install
-	fi
-)
+	print_and_do_command_exit_on_error bundle install
+fi
 
-print_and_do_command_exit_on_error ruby "${input_file}"
+echo "${ruby_content}" > ./__tmp_ruby_content_file.rb
+print_and_do_command_exit_on_error bundle exec ruby ./__tmp_ruby_content_file.rb
+rm ./__tmp_ruby_content_file.rb
 
 echo "--- finished ---"

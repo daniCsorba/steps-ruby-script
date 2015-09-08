@@ -28,12 +28,22 @@ inputs:
       is_expand: false
       is_required: false
       is_dont_change_value: false
-  - input_file: ""
+  - ruby_content: ""
     opts:
       title: "The Ruby script"
       description: ""
       summary: ""
       is_expand: false
       is_required: true
+      is_dont_change_value: false
+  - script_run_dir: ""
+    opts:
+      title: "Run in directory"
+      description: ""
+      summary: |-
+        Specify a directory - this will be set as the
+        current working directory for the script
+      is_expand: true
+      is_required: false
       is_dont_change_value: false
 outputs: []

@@ -1,1 +1,4 @@
 .bitrise*
+Gemfile
+Gemfile.lock
+_tmp
