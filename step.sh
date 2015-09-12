@@ -36,7 +36,13 @@ if [[ "${gemfile_content}" != "" ]]; then
 fi
 
 echo "${ruby_content}" > ./__tmp_ruby_content_file.rb
-print_and_do_command_exit_on_error bundle exec ruby ./__tmp_ruby_content_file.rb
+
+if [[ "${gemfile_content}" != "" ]]; then
+	print_and_do_command_exit_on_error bundle exec ruby ./__tmp_ruby_content_file.rb
+else
+	print_and_do_command_exit_on_error ruby ./__tmp_ruby_content_file.rb
+fi
+
 rm ./__tmp_ruby_content_file.rb
 
 echo "--- finished ---"
