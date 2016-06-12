@@ -4,6 +4,13 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 workflows:
   test:
     steps:
+    - change-workdir:
+        inputs:
+        - path: ./_tmp
+    - path::./:
+    - script:
+        inputs:
+        - content: mkdir -p ./test_script_run_dir
     - path::./:
         inputs:
         - gemfile_content: |-
@@ -22,4 +29,4 @@ workflows:
             puts "res_hash: #{res_hash}"
             raise "Invalid data (a)!" if res_hash["a"] != 1
             raise "Invalid data (b)!" if res_hash["b"] != 2
-        - script_run_dir: ./_tmp
+        - script_run_dir: ./test_script_run_dir
