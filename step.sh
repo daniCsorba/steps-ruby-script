@@ -1,5 +1,9 @@
 #!/bin/bash
 
+THIS_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CONFIG_gemfile_path="${THIS_SCRIPT_DIR}/Gemfile"
+CONFIG_ruby_content_file="${THIS_SCRIPT_DIR}/ruby_content_file.rb"
+
 function print_and_do_command {
 	echo "-> $ $@"
 	$@
@@ -27,22 +31,26 @@ if [ ! -z "${script_run_dir}" ] ; then
 	print_and_do_command_exit_on_error cd "${script_run_dir}"
 fi
 
+set -e
 if [[ "${gemfile_content}" != "" ]]; then
-	echo " (i) Writing Gemfile"
-
-	echo "${gemfile_content}" > ./Gemfile
-
-	print_and_do_command_exit_on_error bundle install
+	echo "-> Writing Gemfile"
+	echo "${gemfile_content}" > "${CONFIG_gemfile_path}"
+	echo "$ bundle install"
+	BUNDLE_GEMFILE="${CONFIG_gemfile_path}" bundle install
 fi
 
-echo "${ruby_content}" > ./__tmp_ruby_content_file.rb
+echo -n "${ruby_content}" > "${CONFIG_ruby_content_file}"
+set +e
 
+cmd_ex_code=0
 if [[ "${gemfile_content}" != "" ]]; then
-	print_and_do_command_exit_on_error bundle exec ruby ./__tmp_ruby_content_file.rb
+	BUNDLE_GEMFILE="${CONFIG_gemfile_path}" bundle exec ruby "${CONFIG_ruby_content_file}"
+	cmd_ex_code=$?
 else
-	print_and_do_command_exit_on_error ruby ./__tmp_ruby_content_file.rb
+	ruby "${CONFIG_ruby_content_file}"
+	cmd_ex_code=$?
 fi
-
-rm ./__tmp_ruby_content_file.rb
 
 echo "--- finished ---"
+
+exit $cmd_ex_code
