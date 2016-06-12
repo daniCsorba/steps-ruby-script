@@ -1,13 +1,14 @@
 title: Ruby Script runner with optional Gemfile support
-summary: Install the gems you need, run the script you'd like.
-description: |-
+summary: |
+  Install the gems you need, run the script you'd like.
+description: |
   Run a Ruby script with optional Gemfile.
 website: https://github.com/bitrise-io/steps-ruby-script
 source_code_url: https://github.com/bitrise-io/steps-ruby-script
 support_url: https://github.com/bitrise-io/steps-ruby-script/issues
 host_os_tags:
-  - osx-10.9
-  - osx-10.10
+  - osx
+  - ubuntu
 project_type_tags: []
 type_tags:
   - script
@@ -17,33 +18,31 @@ type_tags:
 is_requires_admin_user: true
 is_always_run: false
 is_skippable: false
-dependencies: []
 run_if: ""
 inputs:
-  - gemfile_content: ""
+  - gemfile_content: |
+      source 'https://rubygems.org'
+
+      # gem 'json', '~> 1.8', '>= 1.8.3'
     opts:
       title: "Gemfile's content"
-      description: ""
-      summary: ""
+      description: "Gemfile's content"
+      summary: "Gemfile's content"
       is_expand: false
-      is_required: false
-      is_dont_change_value: false
-  - ruby_content: ""
+  - ruby_content: |
+      puts "Hello World!"
     opts:
       title: "The Ruby script"
-      description: ""
-      summary: ""
+      description: "The Ruby script to run"
+      summary: "The Ruby script to run"
       is_expand: false
       is_required: true
-      is_dont_change_value: false
   - script_run_dir: ""
     opts:
       title: "Run in directory"
-      description: ""
-      summary: |-
+      description: |
         Specify a directory - this will be set as the
         current working directory for the script
-      is_expand: true
-      is_required: false
-      is_dont_change_value: false
-outputs: []
+      summary: |
+        Specify a directory - this will be set as the
+        current working directory for the script
