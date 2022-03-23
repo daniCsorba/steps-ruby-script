@@ -2,7 +2,23 @@ title: Ruby Script runner with optional Gemfile support
 summary: |
   Install the gems you need, run the script you'd like.
 description: |
-  Run a Ruby script with optional Gemfile.
+  The Step runs your Ruby script with `bundle exec ruby` command. The main use case of this Step is to specify Gemfiles to install and run a ruby Script in the same Step. 
+
+  ### Configuring the Step
+
+  1. (Optional) Specify Gemfiles to install in the **Gemfile's content** input.
+     The Step installs the Gemfiles by calling the `bundle install` command. 
+  1. Insert your Ruby script in **The Ruby Script** input.
+  1. (Optional) Specify a working directory for the script in the **Run in directory** input.
+
+  ### Useful links
+
+  * [RubyGems](https://rubygems.org/)
+
+  ### Related Steps
+  
+  * [Script](https://www.bitrise.io/integrations/steps/script)
+  
 website: https://github.com/bitrise-io/steps-ruby-script
 source_code_url: https://github.com/bitrise-io/steps-ruby-script
 support_url: https://github.com/bitrise-io/steps-ruby-script/issues
